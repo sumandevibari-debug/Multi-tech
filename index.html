@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multitech Pro | v4.0 Escalation</title>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app-root">
+        <aside id="sidebar" aria-label="Main Navigation">
+            <div class="brand">
+                <div class="brand-icon"><span class="material-icons-round">token</span></div>
+                <h1>Multitech <span class="version">v4.0</span></h1>
+            </div>
+
+            <nav class="nav-menu" role="tablist">
+                <button class="nav-btn active" data-target="calculator" role="tab" aria-selected="true" aria-label="Calculator">
+                    <i class="material-icons-round">calculate</i> <span>Calculator</span>
+                </button>
+                <button class="nav-btn" data-target="calendar" role="tab" aria-selected="false" aria-label="Calendar">
+                    <i class="material-icons-round">calendar_month</i> <span>Calendar</span>
+                </button>
+                <button class="nav-btn" data-target="clock" role="tab" aria-selected="false" aria-label="Clock">
+                    <i class="material-icons-round">schedule</i> <span>Clock</span>
+                </button>
+                <button class="nav-btn" data-target="alarm" role="tab" aria-selected="false" aria-label="Alarm">
+                    <i class="material-icons-round">alarm</i> <span>Alarm</span>
+                </button>
+                <button class="nav-btn" data-target="timer" role="tab" aria-selected="false" aria-label="Timer">
+                    <i class="material-icons-round">timer</i> <span>Timer</span>
+                </button>
+                <button class="nav-btn" data-target="notepad" role="tab" aria-selected="false" aria-label="Notepad">
+                    <i class="material-icons-round">article</i> <span>Notepad</span>
+                </button>
+                <button class="nav-btn" data-target="todos" role="tab" aria-selected="false" aria-label="Tasks">
+                    <i class="material-icons-round">check_circle</i> <span>Tasks</span>
+                </button>
+                <button class="nav-btn" data-target="tools" role="tab" aria-selected="false" aria-label="Tools">
+                    <i class="material-icons-round">construction</i> <span>Tools</span>
+                </button>
+            </nav>
+
+            <div class="nav-footer">
+                <button class="icon-btn" id="theme-btn" title="Toggle Theme" aria-label="Toggle Dark Mode">
+                    <i class="material-icons-round">dark_mode</i>
+                </button>
+                <button class="icon-btn" id="settings-btn" title="Settings" aria-label="Open Settings">
+                    <i class="material-icons-round">settings</i>
+                </button>
+                <button class="icon-btn" id="data-manager-btn" title="Data Manager" aria-label="Manage Data">
+                    <i class="material-icons-round">database</i>
+                </button>
+            </div>
+        </aside>
+
+        <main id="main-content" role="main">
+            
+            <div id="logo-container">
+                <img src="Gemini_Generated_Image_32hlj32hlj32hlj3.png" alt="Silicon Rook Logo" id="silicon-rook-logo">
+            </div>
+            
+            <section id="calculator" class="module-view active" role="tabpanel">
+                <div class="calc-container">
+                    <div class="calc-screen">
+                        <div class="history" id="calc-history"></div>
+                        <div class="result" id="calc-display">0</div>
+                    </div>
+                    <div class="calc-pad">
+                        <button class="fn" data-action="clear" aria-label="Clear All">AC</button>
+                        <button class="fn" data-action="del" aria-label="Delete">DEL</button>
+                        <button class="fn" data-op="(">(</button>
+                        <button class="fn" data-op=")">)</button>
+                        
+                        <button class="op" data-op="%">%</button>
+                        <button class="op" data-op="^">^</button>
+                        <button class="op" data-op="sqrt">√</button>
+                        <button class="op" data-op="/">÷</button>
+
+                        <button data-num="7">7</button> <button data-num="8">8</button> <button data-num="9">9</button>
+                        <button class="op" data-op="*">×</button>
+                        
+                        <button data-num="4">4</button> <button data-num="5">5</button> <button data-num="6">6</button>
+                        <button class="op" data-op="-">-</button>
+                        
+                        <button data-num="1">1</button> <button data-num="2">2</button> <button data-num="3">3</button>
+                        <button class="op" data-op="+">+</button>
+                        
+                        <button class="wide" data-num="0">0</button> <button data-num=".">.</button>
+                        <button class="submit" data-action="equal" aria-label="Calculate">=</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="calendar" class="module-view" role="tabpanel">
+                <div class="panel full-height">
+                    <div class="cal-header">
+                        <div class="cal-nav">
+                            <button class="icon-btn" id="cal-prev" aria-label="Previous Month"><i class="material-icons-round">chevron_left</i></button>
+                            <h2 id="cal-month-name">Month Year</h2>
+                            <button class="icon-btn" id="cal-next" aria-label="Next Month"><i class="material-icons-round">chevron_right</i></button>
+                        </div>
+                        <button class="primary-btn sm" id="add-event-btn"><i class="material-icons-round">add</i> Event</button>
+                    </div>
+                    <div class="cal-grid-header">
+                        <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                    </div>
+                    <div class="cal-grid" id="cal-grid"></div>
+                </div>
+            </section>
+
+            <section id="clock" class="module-view" role="tabpanel">
+                <div class="clock-display">
+                    <h1 id="digital-clock">00:00:00</h1>
+                    <p id="date-display">Date info</p>
+                </div>
+                <div class="world-clock-container">
+                    <div class="section-header">
+                        <h3>World Clocks</h3>
+                        <button class="text-btn" id="add-city-btn">+ Add City</button>
+                    </div>
+                    <div class="city-grid" id="world-clock-grid"></div>
+                </div>
+            </section>
+
+            <section id="alarm" class="module-view" role="tabpanel">
+                <div class="panel alarm-panel">
+                    <div class="panel-head">
+                        <h3>Alarms</h3>
+                        <button class="primary-btn" id="new-alarm-trigger"><i class="material-icons-round">add</i> Create</button>
+                    </div>
+                    <div class="list-container" id="alarm-list"></div>
+                </div>
+            </section>
+
+            <section id="timer" class="module-view" role="tabpanel">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="mode-timer">Timer</button>
+                    <button class="tab-btn" data-tab="mode-pomodoro">Pomodoro</button>
+                    <button class="tab-btn" data-tab="mode-stopwatch">Stopwatch</button>
+                </div>
+
+                <div id="mode-timer" class="timer-mode">
+                    <div class="huge-display" id="timer-display">00:00:00</div>
+                    <div class="timer-inputs">
+                        <input type="number" id="t-h" placeholder="00" min="0" max="23" aria-label="Hours"> :
+                        <input type="number" id="t-m" placeholder="00" min="0" max="59" aria-label="Minutes"> :
+                        <input type="number" id="t-s" placeholder="00" min="0" max="59" aria-label="Seconds">
+                    </div>
+                    <div class="controls">
+                        <button class="control-btn play" id="timer-start" aria-label="Start Timer"><i class="material-icons-round">play_arrow</i></button>
+                        <button class="control-btn" id="timer-reset" aria-label="Reset Timer"><i class="material-icons-round">refresh</i></button>
+                    </div>
+                </div>
+
+                <div id="mode-pomodoro" class="timer-mode hidden">
+                    <div class="huge-display" id="pomo-display">25:00</div>
+                    <div class="presets" id="pomo-presets">
+                        <button class="pomo-btn" data-min="25">Focus (25m)</button>
+                        <button class="pomo-btn" data-min="5">Break (5m)</button>
+                        <button class="pomo-btn" data-min="15">Long (15m)</button>
+                    </div>
+                    <div class="controls" style="margin-top:20px">
+                        <button class="control-btn play" id="pomo-start"><i class="material-icons-round">play_arrow</i></button>
+                        <button class="control-btn" id="pomo-reset"><i class="material-icons-round">refresh</i></button>
+                    </div>
+                </div>
+
+                <div id="mode-stopwatch" class="timer-mode hidden">
+                    <div class="huge-display" id="sw-display">00:00.00</div>
+                    <div class="controls">
+                        <button class="control-btn play" id="sw-start"><i class="material-icons-round">play_arrow</i></button>
+                        <button class="control-btn" id="sw-lap"><i class="material-icons-round">flag</i></button>
+                        <button class="control-btn" id="sw-reset"><i class="material-icons-round">refresh</i></button>
+                    </div>
+                    <div class="lap-history" id="sw-laps"></div>
+                </div>
+            </section>
+
+            <section id="notepad" class="module-view" role="tabpanel">
+                <div class="notepad-layout">
+                    <div class="note-sidebar">
+                        <div class="note-actions">
+                            <button class="primary-btn full" id="note-create">New Note</button>
+                            <input type="text" class="search-input" id="note-search" placeholder="Search notes...">
+                            <select id="note-sort" class="sort-select" aria-label="Sort Notes">
+                                <option value="date">Date</option>
+                                <option value="title">Title</option>
+                            </select>
+                        </div>
+                        <div class="note-list" id="note-list"></div>
+                    </div>
+                    <div class="note-editor-container">
+                        <div class="editor-meta">
+                            <input type="text" id="note-title-input" placeholder="Note Title" aria-label="Note Title">
+                            <input type="text" id="note-tags-input" placeholder="Tags (comma separated)" aria-label="Tags">
+                        </div>
+                        <div class="editor-toolbar">
+                            <button data-cmd="bold" title="Bold"><i class="material-icons-round">format_bold</i></button>
+                            <button data-cmd="italic" title="Italic"><i class="material-icons-round">format_italic</i></button>
+                            <button data-cmd="insertUnorderedList" title="List"><i class="material-icons-round">format_list_bulleted</i></button>
+                            <div class="spacer"></div>
+                            <span class="save-indicator" id="note-save-status">Saved</span>
+                            <button class="icon-btn danger" id="note-delete" title="Delete Note"><i class="material-icons-round">delete</i></button>
+                        </div>
+                        <div class="editor-body" id="note-editor" contenteditable="true" aria-label="Note Content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="todos" class="module-view" role="tabpanel">
+                <div class="todo-panel">
+                    <div class="todo-header">
+                        <h3>Tasks</h3>
+                        <div class="flex-row">
+                            <input type="text" id="new-todo-input" placeholder="Add a new task..." aria-label="New Task">
+                            <button class="primary-btn sm" id="add-todo-btn">Add</button>
+                        </div>
+                    </div>
+                    <div class="todo-list" id="todo-list"></div>
+                    <div class="todo-footer">
+                        <button class="text-btn" id="clear-todos-btn">Clear Completed</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tools" class="module-view" role="tabpanel">
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h3>Unit Converter</h3>
+                        <div class="converter-box">
+                            <input type="number" id="conv-input" placeholder="Value" aria-label="Input Value">
+                            <div class="flex-row">
+                                <select id="conv-from" aria-label="From Unit">
+                                    <option value="m">Meters</option>
+                                    <option value="ft">Feet</option>
+                                    <option value="kg">Kg</option>
+                                    <option value="lb">Lbs</option>
+                                    <option value="c">Celsius</option>
+                                    <option value="f">Fahrenheit</option>
+                                </select>
+                                <i class="material-icons-round">arrow_forward</i>
+                                <select id="conv-to" aria-label="To Unit">
+                                    <option value="ft">Feet</option>
+                                    <option value="m">Meters</option>
+                                    <option value="lb">Lbs</option>
+                                    <option value="kg">Kg</option>
+                                    <option value="f">Fahrenheit</option>
+                                    <option value="c">Celsius</option>
+                                </select>
+                            </div>
+                            <div class="conv-result" id="conv-result">Result: -</div>
+                        </div>
+                    </div>
+                    <div class="tool-card">
+                        <h3>Password Generator</h3>
+                        <div class="flex-row">
+                            <input type="number" id="pwd-len" value="12" min="6" max="32" style="width:60px" aria-label="Password Length">
+                            <button class="primary-btn sm" id="pwd-gen-btn">Generate</button>
+                        </div>
+                        <input type="text" id="pwd-output" readonly style="margin-top:10px; width:100%; text-align:center; font-family:monospace;" aria-label="Generated Password">
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
+        <div class="modal-container" id="modal-container" role="dialog" aria-labelledby="modal-title">
+            <div class="modal-header">
+                <h3 id="modal-title">Title</h3>
+                <button class="icon-btn" id="modal-close" aria-label="Close Modal"><i class="material-icons-round">close</i></button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+            <div class="modal-footer" id="modal-footer"></div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <div id="alarm-overlay" class="alarm-overlay hidden">
+        <div class="alarm-content">
+            <h1 id="overlay-time">00:00</h1>
+            <h2 id="overlay-label">Alarm</h2>
+            
+            <div id="overlay-challenge" class="hidden">
+                <p>Solve to Dismiss: <span id="math-prob"></span></p>
+                <input type="number" id="math-answer" placeholder="?" inputmode="numeric">
+            </div>
+
+            <div class="overlay-controls">
+                <button class="snooze-btn" id="overlay-snooze">Snooze (5m)</button>
+                <button class="dismiss-btn" id="overlay-dismiss">Dismiss</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
